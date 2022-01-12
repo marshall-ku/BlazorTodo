@@ -4,26 +4,38 @@
 
 <h1>Todo</h1>
 
+
 <ul>
     @foreach (var item in todo)
     {
-        <li>@item.Title</li>
+        <li>
+            <input type="checkbox" @biind="todo.IsDone" />
+            <h2>@item.Title</h2>
+            <p>@item.Description</p>
+        </li>
     }
 </ul>
 
-<input placeholder="Add todo" @bind="newTodoTitle" />
+<input placeholder="Title" @bind="newTodoTitle" />
+<input placeholder="Description" @bind="newTodoDescription" />
 <button @onclick="AddTodoItem">Add</button>
 
 @code {
     private List<TodoItem> todo = new();
     private string? newTodoTitle;
+    private string? newTodoDescription;
 
     private void AddTodoItem()
     {
         if (!string.IsNullOrWhiteSpace(newTodoTitle))
         {
-            todo.Add(new TodoItem { Title = newTodoTitle });
+            todo.Add(new TodoItem
+                {
+                    Title = newTodoTitle,
+                    Description = newTodoDescription
+                });
             newTodoTitle = string.Empty;
+            newTodoDescription = string.Empty;
         }
     }
 }
