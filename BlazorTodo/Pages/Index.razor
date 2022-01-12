@@ -14,27 +14,28 @@
     </p>
 </header>
 
-<section>
-    @foreach (var item in todo)
-    {
-        <article>
-            <div>
-                <label>
-                    Done
-                    <input type="checkbox" @bind="item.IsDone" />
-                </label>
-            </div>
-            <h2>@item.Title</h2>
-            <p>@item.Description</p>
-        </article>
-    }
-</section>
-
 <form @onsubmit="AddTodoItem" @onsubmit:preventDefault>
     <input placeholder="Title" @bind="newTodoTitle" />
     <input placeholder="Description" @bind="newTodoDescription" />
     <button type="submit" @onclick="AddTodoItem">Add</button>
 </form>
+
+<section>
+    @foreach (var item in todo)
+    {
+        <article>
+            <header>
+                <div>
+                    <label>
+                        <input type="checkbox" @bind="item.IsDone" />
+                    </label>
+                </div>
+                <h2>@item.Title</h2>
+            </header>
+            <p>@item.Description</p>
+        </article>
+    }
+</section>
 
 @code {
     private List<TodoItem> todo = new();
