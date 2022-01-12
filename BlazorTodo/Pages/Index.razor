@@ -4,7 +4,14 @@
 
 <header>
     <h1>Todo</h1>
-    <p>You have <span>@todo.Count(x => !x.IsDone)</span> things to do</p>
+    @{
+        int todoCount = @todo.Count(x => !x.IsDone);
+    }
+    <p>
+        You have <span>
+            @(@todoCount.Equals(0) ? "Nothing" : @todoCount.ToString() + " thing" + (@todoCount.Equals(1) ? "" : "s"))
+        </span> to do
+    </p>
 </header>
 
 <section>
