@@ -16,9 +16,11 @@
     }
 </ul>
 
-<input placeholder="Title" @bind="newTodoTitle" />
-<input placeholder="Description" @bind="newTodoDescription" />
-<button @onclick="AddTodoItem">Add</button>
+<form @onsubmit="AddTodoItem" @onsubmit:preventDefault>
+    <input placeholder="Title" @bind="newTodoTitle" />
+    <input placeholder="Description" @bind="newTodoDescription" />
+    <button type="submit" @onclick="AddTodoItem">Add</button>
+</form>
 
 @code {
     private List<TodoItem> todo = new();
