@@ -5,16 +5,21 @@
 <h1>Todo</h1>
 
 
-<ul>
+<main>
     @foreach (var item in todo)
     {
-        <li>
-            <input type="checkbox" @biind="todo.IsDone" />
+        <article>
+            <div>
+                <label>
+                    Done
+                    <input type="checkbox" @bind="item.IsDone" />
+                </label>
+            </div>
             <h2>@item.Title</h2>
             <p>@item.Description</p>
-        </li>
+        </article>
     }
-</ul>
+</main>
 
 <form @onsubmit="AddTodoItem" @onsubmit:preventDefault>
     <input placeholder="Title" @bind="newTodoTitle" />
