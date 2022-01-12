@@ -2,10 +2,12 @@
 
 <PageTitle>Todo</PageTitle>
 
-<h1>Todo</h1>
+<header>
+    <h1>Todo</h1>
+    <p>You have <span>@todo.Count(x => !x.IsDone)</span> things to do</p>
+</header>
 
-
-<main>
+<section>
     @foreach (var item in todo)
     {
         <article>
@@ -19,7 +21,7 @@
             <p>@item.Description</p>
         </article>
     }
-</main>
+</section>
 
 <form @onsubmit="AddTodoItem" @onsubmit:preventDefault>
     <input placeholder="Title" @bind="newTodoTitle" />
