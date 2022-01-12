@@ -33,6 +33,7 @@
                 <h2>@item.Title</h2>
             </header>
             <p>@item.Description</p>
+            <button @onclick="() => RemoveTodoItem(item.Id)">Remove</button>
         </article>
     }
 </section>
@@ -41,6 +42,15 @@
     private List<TodoItem> todo = new();
     private string? newTodoTitle;
     private string? newTodoDescription;
+    private long id = 0;
+
+    private void RemoveTodoItem(long id)
+    {
+        var matchesItem = todo.Find(x => x.Id.Equals(id));
+
+        if (matchesItem != null)
+            todo.Remove(matchesItem);
+    }
 
     private void AddTodoItem()
     {
@@ -48,11 +58,13 @@
         {
             todo.Add(new TodoItem
                 {
+                    Id = id,
                     Title = newTodoTitle,
                     Description = newTodoDescription
                 });
             newTodoTitle = string.Empty;
             newTodoDescription = string.Empty;
+            id += 1;
         }
     }
 }
